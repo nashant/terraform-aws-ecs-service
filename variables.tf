@@ -193,6 +193,12 @@ variable "volumes" {
   default     = []
 }
 
+variable "efs_volumes" {
+  description = "Defines the EFS volumes that can be mounted to a container."
+  type        = list(map(string))
+  default     = []
+}
+
 // ------
 // Monitoring specific variables
 // ------
