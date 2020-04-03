@@ -30,6 +30,17 @@ resource "aws_ecs_task_definition" "task" {
       name      = volume.value["name"]
     }
   }
+  dynamic "volume" {
+    for_each = var.efs_volumes
+    content {
+      name      = efs_volume.value["name"]
+      efs_volume_configuration {
+        file_system_id = efs_volume.value["efs_id"]
+        root_directory = efs_volume.value["root_directory"]
+      }
+    }
+  }
+
   container_definitions = data.template_file.docker-template.rendered
   task_role_arn         = var.task_role_arn
 }
