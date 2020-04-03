@@ -199,6 +199,12 @@ variable "volumes" {
   default     = []
 }
 
+variable "efs_volumes" {
+  description = "Defines the EFS volumes that can be mounted to a container."
+  type        = list(map(string))
+  default     = []
+}
+
 variable "awsvpc_service_security_groups" {
   description = "List of security groups to be attached to service running in awsvpc network mode. Required for launch type FARGATE."
   default     = []
